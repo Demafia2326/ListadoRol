@@ -6,6 +6,6 @@ public interface ListadoInterface {
     }
 
     public interface Presenter{
-        void onClickAdd();
+        public static void onClickAdd(){};
     }
 }

@@ -10,7 +10,6 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
         this.view = view;
     }
 
-    @Override
     public void onClickAdd(){
         view.lanzarFormulario();
     }

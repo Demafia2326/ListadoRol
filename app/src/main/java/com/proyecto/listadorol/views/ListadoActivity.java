@@ -13,13 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 public class ListadoActivity extends AppCompatActivity implements ListadoInterface.View{
 
 
     String TAG="Prueba01/ListadoActivity";
-    private ListadoInterface.Presenter presenter;
+    private ListadoInterface.Presenter pre;
 
 
     @Override
@@ -30,14 +32,14 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         setSupportActionBar(toolbar);
 
 
-        presenter = new ListadoPresenter(this);
+        pre = new ListadoPresenter(this);
 
         FloatingActionButton fab = findViewById(R.id.fabAnadir);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"Pulsando boton flotante");
-                presenter.onClickAdd();
+                ListadoInterface.Presenter.onClickAdd();
             }
         });
     }
@@ -48,6 +50,34 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         Log.d(TAG,"Lanzando lista...");
         Intent intent = new Intent(ListadoActivity.this, FormularioActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_listado, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                Log.d(TAG,"Lanzando lista...");
+                Intent intent = new Intent(ListadoActivity.this, BuscarActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_settings1:
+                Log.i("ActionBar", "ORDENAR");
+                return true;
+            case R.id.action_settings2:
+                Log.i("ActionBar", "CONFIGURACION");
+                return true;
+            case R.id.action_settings3:
+                Log.i("Actionbar","AppCRUD");
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

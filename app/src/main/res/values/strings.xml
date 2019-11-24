@@ -6,4 +6,16 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_buscar">BuscarActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <!--Copiar-->
+    <string name="titlulo_pickers">Obtener fecha y hora</string>
+
+    <string name="formato_fecha">dd/mm/yyyy</string>
+    <string name="formato_hora">hh:mm</string>
+    <string name="buscar">buscar</string>
+    <string name="fecha_creacion">Fecha_creacion</string>
+    <string name="raza">Raza</string>
+    <string name="fecha_creaci_n">Fecha Creación</string>
+
 </resources>
