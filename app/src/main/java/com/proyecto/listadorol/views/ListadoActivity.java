@@ -1,5 +1,6 @@
 package com.proyecto.listadorol.views;
 
+import android.app.Person;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,14 +9,21 @@ import com.google.android.material.snackbar.Snackbar;
 import com.proyecto.listadorol.Presenters.ListadoPresenter;
 import com.proyecto.listadorol.R;
 import com.proyecto.listadorol.interfaces.ListadoInterface;
+import com.proyecto.listadorol.models.PeopleModel;
+import com.proyecto.listadorol.models.PersonMin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class ListadoActivity extends AppCompatActivity implements ListadoInterface.View{
 
@@ -23,9 +31,16 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     String TAG="Prueba01/ListadoActivity";
     private ListadoInterface.Presenter pre;
 
+    private ArrayList<PersonMin> items;
+    private RecyclerView reciclerView;
+    private int n;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -39,17 +54,71 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"Pulsando boton flotante");
-                ListadoInterface.Presenter.onClickAdd();
+                pre.onClickAdd();
             }
         });
+
+
+        // Inicializa el RecyclerView
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listadoRecyclerView);
+
+        PersonAdapter adaptador=new PersonAdapter(pre.getAllPerson());
+
+        // Crea el Adaptador con los datos de la lista anterior
+        //PersonAdapter adaptador = new PersonAdapter(items);
+
+
+
+        items = pre.getAllPerson();
+        adaptador=new PersonAdapter(items);
+
+        adaptador.setOnClickListener(new View.OnClickListener() {
+           @Override
+            public void onClick(View v) {
+                // Acción al pulsar el elemento
+                int position = recyclerView.getChildAdapterPosition(v);
+                Log.d(TAG," Click RV"+position+" "+items.get(position).getId().toString());
+                pre.onClicRecyclerView(items.get(position).getId());
+            }
+        });
+
+        // Asocia el Adaptador al RecyclerView
+        recyclerView.setAdapter(adaptador);
+
+        // Muestra el RecyclerView en vertical
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        if(n==1) {
+            Bundle extras = getIntent().getExtras();
+            String d1 = extras.getString("1");
+            String d2 = extras.getString("2");
+            String d3 = extras.getString("3");
+
+            items = pre.BuscarPersona(d1, d2, d3);
+        }else{
+            items = pre.getAllPerson();
+
+        }
+
     }
 
 
     @Override
-    public void lanzarFormulario() {
+    public void lanzarFormulario(int id) {
         Log.d(TAG,"Lanzando lista...");
-        Intent intent = new Intent(ListadoActivity.this, FormularioActivity.class);
-        startActivity(intent);
+        if(id==-1){
+            Intent intent = new Intent(ListadoActivity.this,
+                    FormularioActivity.class);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(ListadoActivity.this,
+                    FormularioActivity.class);
+
+            startActivity(intent);
+        }
+
+
     }
 
     @Override
@@ -118,9 +187,45 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
     @Override
     protected void onResume() {
-        super.onResume();
+        //this.n=0;
+        this.n=1;
+        try {
+            if (n == 1) {
+                Bundle extras = getIntent().getExtras();
+                String d1 = extras.getString("1");
+                String d2 = extras.getString("2");
+                String d3 = extras.getString("3");
 
+                items = pre.BuscarPersona(d1, d2, d3);
+            } else {
+                items = pre.getAllPerson();
+                //this.n=2;
+
+            }
+        }catch (Exception e){
+
+        }
+        //item = presenter.getAllPeliculas();
+        final PersonAdapter adaptador = new PersonAdapter(items);
+
+        adaptador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Acción al pulsar el elemento
+                int position = reciclerView.getChildAdapterPosition(v);
+                Log.d(TAG, "Click view: " + position + "" + items.get(position).getId().toString());
+                pre.onClicRecyclerView(items.get(position).getId());
+
+            }
+        });
+
+        reciclerView.setAdapter(adaptador);
+        reciclerView.setLayoutManager(new LinearLayoutManager(this));
+        // this.n=2;
+        super.onResume();
     }
+
+
 
 
 }
