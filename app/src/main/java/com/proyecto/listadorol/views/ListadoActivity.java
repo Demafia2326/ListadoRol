@@ -32,7 +32,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     private ListadoInterface.Presenter pre;
 
     private ArrayList<PersonMin> items;
-    private RecyclerView reciclerView;
+    //private RecyclerView reciclerView;*/
     private int n;
 
 
@@ -187,41 +187,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
     @Override
     protected void onResume() {
-        //this.n=0;
-        this.n=1;
-        try {
-            if (n == 1) {
-                Bundle extras = getIntent().getExtras();
-                String d1 = extras.getString("1");
-                String d2 = extras.getString("2");
-                String d3 = extras.getString("3");
 
-                items = pre.BuscarPersona(d1, d2, d3);
-            } else {
-                items = pre.getAllPerson();
-                //this.n=2;
-
-            }
-        }catch (Exception e){
-
-        }
-        //item = presenter.getAllPeliculas();
-        final PersonAdapter adaptador = new PersonAdapter(items);
-
-        adaptador.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Acción al pulsar el elemento
-                int position = reciclerView.getChildAdapterPosition(v);
-                Log.d(TAG, "Click view: " + position + "" + items.get(position).getId().toString());
-                pre.onClicRecyclerView(items.get(position).getId());
-
-            }
-        });
-
-        reciclerView.setAdapter(adaptador);
-        reciclerView.setLayoutManager(new LinearLayoutManager(this));
-        // this.n=2;
         super.onResume();
     }
 

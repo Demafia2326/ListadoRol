@@ -50,7 +50,7 @@
                     android:text="Introduzca un campo valido" />
 
                 <EditText
-                    android:id="@+id/editText3"
+                    android:id="@+id/edad_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableRight="@android:drawable/ic_dialog_info"
@@ -59,7 +59,7 @@
                     android:inputType="textPersonName" />
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/player_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableRight="@android:drawable/ic_dialog_dialer"
@@ -68,7 +68,7 @@
                     android:inputType="textPersonName" />
 
                 <EditText
-                    android:id="@+id/editText4"
+                    android:id="@+id/personalidad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableRight="@android:drawable/ic_menu_help"
@@ -85,7 +85,7 @@
                     android:textColor="#000000" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/raza"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/et_mostrar_fecha_picker"
+                        android:id="@+id/fecha"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -119,16 +119,29 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                     <ImageButton
-                        android:id="@+id/ib_obtener_fecha"
+                        android:id="@+id/id_obtener_fecha"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@android:drawable/ic_menu_my_calendar"
                         app:layout_constraintHorizontal_bias="0.505"
-                        app:layout_constraintLeft_toRightOf="@+id/et_mostrar_fecha_picker"
+                        app:layout_constraintLeft_toRightOf="@+id/fecha"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView"
                         tools:ignore="ContentDescription" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Imagen Personaje"
+                    android:textColor="#000000" />
+
+                <ImageView
+                    android:id="@+id/imagen_R"
+                    android:layout_width="211dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@mipmap/ic_launcher_foreground" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -143,19 +156,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Imagen Personaje"
-                    android:textColor="#000000" />
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="211dp"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/ic_launcher_foreground" />
-
                 <Button
                     android:id="@+id/Guardar"
                     android:layout_width="128dp"
@@ -164,6 +164,13 @@
                     android:background="?attr/colorPrimary"
                     android:drawableLeft="@android:drawable/ic_menu_save"
                     android:text="Guardar" />
+
+                <Button
+                    android:id="@+id/Borrar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#DA6060"
+                    android:text="Borrar" />
             </LinearLayout>
 
         </LinearLayout>

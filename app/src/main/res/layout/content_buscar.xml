@@ -8,4 +8,94 @@
     tools:context=".views.BuscarActivity"
     tools:showIn="@layout/activity_buscar">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingRight="50dp"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/name_buscar"
+                android:layout_width="308dp"
+                android:layout_height="wrap_content"
+                android:drawableRight="@android:drawable/ic_menu_myplaces"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="textPersonName"
+                android:isScrollContainer="false" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="30dp"
+                android:text="Raza"
+                android:textColor="#000000" />
+
+            <Spinner
+                android:id="@+id/raza_buscar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/fecha_creaci_n"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_bias="0.025"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/formato_fecha"
+                    android:inputType="date"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                <ImageButton
+                    android:id="@+id/id_obtener_fecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_my_calendar"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintLeft_toRightOf="@+id/fecha"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/Buscar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@android:drawable/ic_menu_search"
+                android:text="@string/buscar" />
+
+        </LinearLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
